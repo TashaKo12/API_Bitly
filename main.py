@@ -35,7 +35,7 @@ def is_bitlink(bitly_token, url):
 
 
 def main():
-    BITLY_TOKEN = os.getenv('BITLINK_TOKEN')
+    bitly_token = os.getenv('BITLINK_TOKEN')
     parser = argparse.ArgumentParser(
         description="Программа позволяет сократить ссылку\
                     или получить количество кликов по уже сокращенной\
@@ -50,12 +50,12 @@ def main():
         url_with_protocol = f"http://{args.url}"
     url_without_protocol = f"{url_parse.netloc}{url_parse.path}"
 
-    if is_bitlink(BITLY_TOKEN, url_without_protocol):
+    if is_bitlink(bitly_token, url_without_protocol):
         print("Переходов по ссылке: {}".format(count_clicks(
-            BITLY_TOKEN, url_without_protocol)))
+            bitly_token, url_without_protocol)))
     else:
         try:
-            print(shorten_url(BITLY_TOKEN, url_with_protocol))
+            print(shorten_url(bitly_token, url_with_protocol))
         except HTTPError:
             print("Неправильная ссылка: ", args.url)
 
