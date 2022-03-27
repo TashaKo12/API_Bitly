@@ -1,10 +1,11 @@
-import requests
 import argparse
 import os
 
+import requests
 from dotenv import load_dotenv
-from requests.exceptions import HTTPError
 from urllib.parse import urlparse
+
+from requests.exceptions import HTTPError
 
 
 def shorten_url(bitly_token, url):
