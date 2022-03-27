@@ -43,12 +43,12 @@ def main():
                     --url ссылку, с которой нужно произвести операцию ")
     parser.add_argument('--url', help='Введите ссылку')
     args = parser.parse_args()
-    url_parse = urlparse(args.url)
-    if url_parse.scheme:
+    parsed_url = urlparse(args.url)
+    if parsed_url.scheme:
         url_with_protocol = args.url
     else:
         url_with_protocol = f"http://{args.url}"
-    url_without_protocol = f"{url_parse.netloc}{url_parse.path}"
+    url_without_protocol = f"{parsed_url.netloc}{parsed_url.path}"
 
     if is_bitlink(bitly_token, url_without_protocol):
         print("Переходов по ссылке: {}".format(count_clicks(
