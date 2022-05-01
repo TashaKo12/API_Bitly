@@ -50,16 +50,16 @@ def main():
         url_with_protocol = f"http://{args.url}"
     url_without_protocol = f"{parsed_url.netloc}{parsed_url.path}"
 
-    if is_bitlink(authorization, netloc_with_path):
+    if is_bitlink(bitly_token, url_without_protocol):
         try:
-            print(count_clicks(netloc_with_path, authorization))
+            print(count_clicks(url_without_protocol, bitly_token))
         except:
             print("Ошибка при подсчете кликов")
     else:
         try:
-            print(shorten_link(authorization, user_url))
-        except:
-            print("Ошибка при сокращении ссылки")
+            print(shorten_url(bitly_token, url_with_protocol))
+        except HTTPError:
+            print("Неправильная ссылка: ", args.url)
 
 
 if __name__ == "__main__":
