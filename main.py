@@ -8,8 +8,11 @@ from urllib.parse import urlparse
 from requests.exceptions import HTTPError
 
 
+API_URL = "https://api-ssl.bitly.com/v4/{}"
+
+
 def shorten_url(bitly_token, url):
-    bit_url = "https://api-ssl.bitly.com/v4/shorten"
+    bit_url = "{}shorten".format(API_URL)
     params = {"long_url": url}
     headers = {"Authorization": "Bearer {}".format(bitly_token)}
     response = requests.post(bit_url, json=params, headers=headers)
@@ -18,8 +21,7 @@ def shorten_url(bitly_token, url):
 
 
 def count_clicks(bitly_token, link):
-    bit_url = "https://api-ssl.bitly.com/v4/bitlinks/{}/clicks/summary" \
-                                                        .format(link)
+    bit_url = "{0}bitlinks/{1}/clicks/summary".format(API_URL, link)
     params = {"unit": "day", "units": "-1"}
     headers = {"Authorization": "Bearer {}".format(bitly_token)}
     response = requests.get(bit_url, params=params, headers=headers)
@@ -28,7 +30,7 @@ def count_clicks(bitly_token, link):
 
 
 def is_bitlink(bitly_token, url):
-    bit_url = "https://api-ssl.bitly.com/v4/bitlinks/{}".format(url)
+    bit_url = "{0}bitlinks/{1}".format(API_URL, url)
     headers = {"Authorization": "Bearer {}".format(bitly_token)}
     response = requests.get(bit_url, headers=headers)
     return response.ok
