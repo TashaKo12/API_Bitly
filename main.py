@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 from requests.exceptions import HTTPError
 
 
-API_URL = "https://api-ssl.bitly.com/v4/{}"
+API_URL = "https://api-ssl.bitly.com/v4/"
 
 
 def shorten_url(bitly_token, url):
