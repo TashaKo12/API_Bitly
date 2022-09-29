@@ -4,7 +4,6 @@ import os
 import requests
 from dotenv import load_dotenv
 from urllib.parse import urlparse
-
 from requests.exceptions import HTTPError
 
 
